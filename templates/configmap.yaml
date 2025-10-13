@@ -9,6 +9,8 @@ data:
   value_from_subcharts: {{ .Subcharts.sample.Values.fruit }}
   file: {{ .Files.Get "files/new.txt" }}  # search exactly a file by name
   files: {{ .Files.Glob "files/*.txt" }} #search a list of files globally
+## Capabilities: This provides information about what capabilities the Kubernetes cluster supports.
+  version: {{ .Capabilities.KubeVersion.Major }}
 ---
 apiVersion: v1
 kind: ConfigMap
