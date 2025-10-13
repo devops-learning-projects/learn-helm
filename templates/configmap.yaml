@@ -5,3 +5,4 @@ metadata:
 data:
   myvalue: "Hello World"
   value_from_values: {{ .Values.fruit }}
+  value_from_charts: {{ .Chart.Name }}
