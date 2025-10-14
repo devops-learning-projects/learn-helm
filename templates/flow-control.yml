@@ -61,10 +61,10 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-configmap
+  name: {{ .Release.Name }}-configmap-5
 data:
   myvalue: "Hello World"
-  {{- $relname := .Release.Name -}}
+  {{- $relname := .Release.Name -}} # we are declaring release name variable here
   {{- with .Values.favorite }}
   drink: {{ .drink | default "tea" | quote }}
   food: {{ .food | upper | quote }}
