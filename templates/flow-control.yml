@@ -1,3 +1,4 @@
+## we use - to remove space
 {{- if .Values.configmap.enabled }}
 ---
 apiVersion: v1
@@ -33,3 +34,15 @@ data:
   food: {{ .food | upper | quote }}
   release: {{ $.Release.Name }}
   {{- end }}
+---
+# Looping with the range
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+data:
+  myvalue: "Hello World"
+  toppings: |-
+    {{- range .Values.pizzaToppings }}
+    - {{ . | title | quote }}
+    {{- end }}
