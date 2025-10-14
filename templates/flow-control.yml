@@ -12,7 +12,7 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-configmap
+  name: {{ .Release.Name }}-configmap-1
 data:
   myvalue: "Hello World"
   drink: {{ .Values.favorite.drink | default "tea" | quote }}
@@ -26,7 +26,7 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-configmap
+  name: {{ .Release.Name }}-configmap-2
 data:
   myvalue: "Hello World"
   {{- with .Values.favorite }}
@@ -39,10 +39,21 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-configmap
+  name: {{ .Release.Name }}-configmap-3
 data:
   myvalue: "Hello World"
   toppings: |-
     {{- range .Values.pizzaToppings }}
     - {{ . | title | quote }}
+    {{- end }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap-4
+data:
+  myvalue: "Hello World"
+  toppings: |-
+    {{- range $key, $value := .Values.favorite }}
+    {{ $key }}: {{ $value }}
     {{- end }}
