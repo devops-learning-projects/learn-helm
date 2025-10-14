@@ -6,5 +6,6 @@ metadata:
 data:
   myvalue: "Hello World"
   drink: {{ quote .Values.favorite.drink }}
+  drinkRe: {{ .Values.favorite.drink | repeat 3 | quote }}
   food: {{ .Values.favorite.food | quote }}
   foodUp: {{ .Values.favorite.food | upper | quote }}
