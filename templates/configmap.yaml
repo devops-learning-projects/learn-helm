@@ -10,5 +10,10 @@ data:
   food: {{ .Values.favorite.food | quote }}
   foodUp: {{ .Values.favorite.food | upper | quote }}
   drink1: {{ .Values.favorite.drink1 | default "tea" | quote }}
-  anno: |
-   {{ (lookup "v1" "Namespace" "" "kube-system").metadata.name }}
+#  anno: |
+#   {{ (lookup "v1" "Namespace" "" "kube-system").metadata.name }}
+  pods: |
+    {{- $pods := lookup "v1" "Pod" "kube-system" "" -}}
+    {{- range $pods.items }}
+    - {{ .metadata.name }}
+    {{- end }}
