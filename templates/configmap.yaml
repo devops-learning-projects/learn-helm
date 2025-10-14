@@ -1,23 +1,9 @@
-# built in objects
+# we use quote template function for get value quoted("").
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-configmap
 data:
   myvalue: "Hello World"
-  value_from_values: {{ .Values.fruit }}
-  value_from_charts: {{ .Chart.Name }}
-  value_from_subcharts: {{ .Subcharts.sample.Values.fruit }}
-  file: {{ .Files.Get "files/new.txt" }}  # search exactly a file by name
-  files: {{ .Files.Glob "files/*.txt" }} #search a list of files globally
-## Capabilities: This provides information about what capabilities the Kubernetes cluster supports.
-  version: {{ .Capabilities.KubeVersion.Major }}
-  file_name: {{ .Template.Name }}
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ .Release.Name }}-configmap1
-data:
-  {{ (.Files.Glob "files/*").AsConfig | nindent 2 }}
-
+  drink: {{ quote .Values.favorite.drink }}
+  food: {{ .Values.favorite.food | quote }}
