@@ -1,0 +1,8 @@
+# Helm charts put these templates inside of a partials file. If want to access the label from multiple file then we can use _helpers.tpl file.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap-cm1
+  {{- template "mychart.labels" }}
+data:
+  myvalue: "Hello World"

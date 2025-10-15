@@ -1,11 +1,4 @@
 ## we use - to remove space
-# templates with define and template
-{{- define "mychart.labels" }}
-  labels:
-    generator: helm
-    date: {{ now | htmlDate }}
-{{- end }}
-
 {{- if .Values.configmap.enabled }}
 ---
 apiVersion: v1
