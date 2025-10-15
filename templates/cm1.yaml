@@ -12,7 +12,7 @@ kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-configmap-cm2
   labels:
-    {{ include "mychart.app" . | indent 4 }}
+{{ include "mychart.app" . | indent 4 }}
 #    {{ template "mychart.app" . }}
 data:
   myvalue: "Hello World"
