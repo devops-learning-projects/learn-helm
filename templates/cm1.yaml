@@ -3,6 +3,6 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-configmap-cm1
-  {{- template "mychart.labels" }}
+  {{- template "mychart.labels" . }} # use . to get value instead empty value
 data:
   myvalue: "Hello World"
