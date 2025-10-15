@@ -6,3 +6,13 @@ metadata:
   {{- template "mychart.labels" . }} # use . to get value instead empty value
 data:
   myvalue: "Hello World"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap-cm2
+  labels:
+    {{ include "mychart.app" . | indent 4 }}
+#    {{ template "mychart.app" . }}
+data:
+  myvalue: "Hello World"
